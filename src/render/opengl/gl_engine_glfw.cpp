@@ -297,9 +297,12 @@ bool GLEngineGLFW::windowRequestsClose() {
 void GLEngineGLFW::pollEvents() { glfwPollEvents(); }
 
 bool GLEngineGLFW::isKeyPressed(char c) {
-  if (c >= '0' && c <= '9') return ImGui::IsKeyPressed(static_cast<ImGuiKey>(ImGuiKey_0 + (c - '0')));
-  if (c >= 'a' && c <= 'z') return ImGui::IsKeyPressed(static_cast<ImGuiKey>(ImGuiKey_A + (c - 'a')));
-  if (c >= 'A' && c <= 'Z') return ImGui::IsKeyPressed(static_cast<ImGuiKey>(ImGuiKey_A + (c - 'A')));
+  ImGuiIO& io = ImGui::GetIO();
+
+  if (c >= '0' && c <= '9') return io.KeysDown[GLFW_KEY_0 + (c - '0')];
+  if (c >= 'a' && c <= 'z') return io.KeysDown[GLFW_KEY_A + (c - 'a')];
+  if (c >= 'A' && c <= 'Z') return io.KeysDown[GLFW_KEY_A + (c - 'A')];
+
   exception("keyPressed only supports 0-9, a-z, A-Z");
   return false;
 }

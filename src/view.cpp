@@ -5,6 +5,7 @@
 #include "polyscope/polyscope.h"
 #include "polyscope/utilities.h"
 
+#include <GLFW/glfw3.h>
 #include "imgui.h"
 
 #include "nlohmann/json.hpp"
@@ -311,6 +312,14 @@ void processKeyboardNavigation(ImGuiIO& io) {
     // WASD-style keyboard navigation
 
     glm::vec3 delta{0.f, 0.f, 0.f};
+
+    #ifndef ImGuiKey_D
+    #define ImGuiKey_D GLFW_KEY_D
+    #define ImGuiKey_Q GLFW_KEY_Q
+    #define ImGuiKey_E GLFW_KEY_E
+    #define ImGuiKey_W GLFW_KEY_W
+    #define ImGuiKey_S GLFW_KEY_S
+    #endif
 
     if (ImGui::IsKeyDown(ImGuiKey_A)) delta.x += 1.f;
     if (ImGui::IsKeyDown(ImGuiKey_D)) delta.x += -1.f;

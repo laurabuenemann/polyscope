@@ -1,3 +1,5 @@
+#define GLM_ENABLE_EXPERIMENTAL
+
 #include "polyscope/polyscope.h"
 
 #include "polyscope/combining_hash_functions.h"
